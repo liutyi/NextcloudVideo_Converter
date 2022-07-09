@@ -22,6 +22,7 @@ $(document).ready(function () {
                     var vbitrate = null;
                     var scaling = null;
                     var faststart = true;
+                    var sdr = true;
                     $('body').append(
                         '<div id="linkeditor_overlay" class="oc-dialog-dim"></div>'
                         + '<div id="linkeditor_container" class="oc-dialog" style="position: fixed;">'
@@ -111,6 +112,9 @@ $(document).ready(function () {
                         + '<div class="checkbox-container">'
                         + '<label class="vc-label" for="movflags">Faststart option (for MP4)</label>'
                         + '<input type="checkbox" id="movflags" name="faststart" checked>'
+                        + '<br>'
+                        + '<label class="vc-label" for="sdrflags">Force SDR</label>'
+                        + '<input type="checkbox" id="sdrflags" name="sdr" checked>'
                         + '</div></div>'
                         + '<p class="vc-label urldisplay" id="text" style="display: inline; margin-right: 10px;">'
                         + t('video_converter', 'Choose the output format:')
@@ -158,6 +162,9 @@ $(document).ready(function () {
                     document.getElementById("movflags").addEventListener("change", function (element) {
                         faststart = element.srcElement.checked;
                     });
+                    document.getElementById("sdrflags").addEventListener("change", function (element) {
+                        sdr = element.srcElement.checked;
+                    });
                     document.getElementById("linkeditor_overlay").addEventListener("click", function () {
                         close();
                         finished = true;
@@ -178,6 +185,7 @@ $(document).ready(function () {
                                         preset: preset,
                                         priority: priority,
                                         movflags: faststart,
+                                        sdrflags: sdr,
                                         codec: vcodec,
                                         vbitrate: vbitrate,
                                         scale: scaling,
@@ -192,6 +200,7 @@ $(document).ready(function () {
                                         preset: preset,
                                         priority: priority,
                                         movflags: faststart,
+                                        sdrflags: sdr,
                                         codec: vcodec,
                                         vbitrate: vbitrate,
                                         scale: scaling,
@@ -221,6 +230,7 @@ $(document).ready(function () {
                                         document.getElementById("labelBitrateUnit").style.display = "none";
                                         document.getElementById("labelPriority").style.display = "none";
                                         document.getElementById("movflags").style.display = "none";
+                                        document.getElementById("sdrflags").style.display = "none";
                                         document.getElementById("note").style.display = "none";
                                         document.getElementById("buttons").setAttribute('style', 'display: none !important');
                                     },
