@@ -16,7 +16,7 @@ $(document).ready(function () {
 
                     var self = this;
                     var preset = "medium";
-                    var priority = "0";
+                    var priority = "10";
                     var title = "Titre";
                     var vcodec = null;
                     var vbitrate = null;
@@ -63,8 +63,8 @@ $(document).ready(function () {
                         + '</p>'
                         + '<select id="priority" style="margin-bottom: 10px;">'
                         + '<option value="-10">High</option>'
-                        + '<option value="0">Normal (default)</option>'
-                        + '<option value="10" selected>Low</option>'
+                        + '<option value="0">Normal</option>'
+                        + '<option value="10" selected>Low (default)</option>'
                         + '</select>'
                         + '<br>'
                         + '<p class="vc-label urldisplay" id="labelCodec" style="display:inline-block; margin-right:5px;">'
@@ -74,6 +74,9 @@ $(document).ready(function () {
                         + '<option value="none">Auto</option>'
                         + '<option value="x264">H264</option>'
                         + '<option value="x265">HEVC</option>'
+                        + '<option value="vpx">VP8</option>'
+                        + '<option value="vpx-vp9">VP9</option>'
+                        + '<option value="av1">AV1</option>'
                         + '<option value="copy">Copy</option>'
                         + '</select>'
                         + '<p class="vc-label urldisplay" id="labelBitrate" style="display:inline-block; margin-right:5px;">'
