@@ -70,21 +70,64 @@ class ConversionController extends Controller {
         public function createCmd($file, $preset, $output, $priority, $movflags, $sdrflags, $codec, $vbitrate, $scale){
                 $middleArgs = "";
                 if ($output == "webm"){
+                        switch ($codec)  {
+                                case 'vpx':
+                                        $middleArgs = "-vcodec libvpx -quality best";
+                                        break;
+                                case 'vpx-vp9':
+                                        $middleArgs = "-vcodec libvpx-vp9";
+                                        break;
+                                default:
+                                        $middleArgs = "-vcodec libvpx -quality good";
+                                        break;
+                        }
                         switch ($preset) {
                                 case 'faster':
-                                        $middleArgs = "-vcodec libvpx -cpu-used 1 -threads 16";
+                                        $middleArgs = $middleArgs." -cpu-used 1 -threads 12";
                                         break;
                                 case 'veryfast':
-                                        $middleArgs = "-vcodec libvpx -cpu-used 2 -threads 16";
+                                        $middleArgs = $middleArgs." -cpu-used 2 -threads 12";
                                         break;
                                 case 'superfast':
-                                        $middleArgs = "-vcodec libvpx -cpu-used 4 -threads 16";
+                                        $middleArgs = $middleArgs." -cpu-used 4 -threads 12";
                                         break;
                                 case 'ultrafast':
-                                        $middleArgs = "-vcodec libvpx -cpu-used 5 -threads 16 -deadline realtime";
+                                        $middleArgs = $middleArgs." -cpu-used 5 -threads 12 -deadline realtime";
                                         break;
                                 default:
                                         break;
+                        }
+                        /** if ($sdrflags) {
+                                $middleArgs = $middleArgs." -vf format=yuv420p ";
+                        }*/
+                        if ($vbitrate != null) {
+                                switch ($vbitrate) {
+                                        case '1':
+                                                $vbitrate = '1000k';
+                                                break;
+                                        case '2':
+                                                $vbitrate = '2000k';
+                                                break;
+                                        case '3':
+                                                $vbitrate = '3000k';
+                                                break;
+                                        case '4':
+                                                $vbitrate = '4000k';
+                                                break;
+                                        case '5':
+                                                $vbitrate = '5000k';
+                                                break;
+                                        case '6':
+                                                $vbitrate = '6000k';
+                                                break;
+                                        case '7':
+                                                $vbitrate = '7000k';
+                                                break;
+                                        default :
+                                                $vbitrate = '2000k';
+                                                break;
+                                }
+                                $middleArgs = $middleArgs." -b:v ".$vbitrate;
                         }
                 } else {
                         if ($codec != null){
@@ -94,6 +137,9 @@ class ConversionController extends Controller {
                                                 break;
                                         case 'x265':
                                                 $middleArgs = "-vcodec libx265 -preset ".escapeshellarg($preset). " -strict -2";
+                                                break;
+                                        case 'av1':
+                                                $middleArgs = "-vcodec libaom-av1 -cpu-used 10 -strict -2 -row-mt 1 -threads 12";
                                                 break;
                                 }
                         } else {
