@@ -139,7 +139,7 @@ class ConversionController extends Controller {
                                                 $middleArgs = "-vcodec libx265 -preset ".escapeshellarg($preset). " -strict -2";
                                                 break;
                                         case 'av1':
-                                                $middleArgs = "-vcodec libaom-av1 -cpu-used 10 -strict -2 -row-mt 1 -threads 12";
+                                                $middleArgs = "-vcodec libaom-av1 -cpu-used 6 -strict -2 -row-mt 1 -threads 12";
                                                 break;
                                 }
                         } else {
