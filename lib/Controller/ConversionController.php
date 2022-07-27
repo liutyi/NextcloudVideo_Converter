@@ -145,11 +145,11 @@ class ConversionController extends Controller {
                         } else {
                                 $middleArgs = "-preset ".escapeshellarg($preset). " -strict -2";
                         }
-                        if ($movflags) {
+                        if ($movflags == "true") {
                                 $middleArgs = $middleArgs." -movflags +faststart ";
                         }
-                        if ($sdrflags) {
-                                $middleArgs = $middleArgs." -vf format=yuv420p ";
+                        if ($sdrflags == "true" ) {
+                                $middleArgs = $middleArgs." -vf zscale=t=linear:npl=550,format=gbrpf32le,tonemap=tonemap=mobius:desat=0,zscale=p=bt709:t=bt709:m=bt709:r=tv,format=yuv420p ";
                         }
                         if ($vbitrate != null) {
                                 switch ($vbitrate) {
