@@ -226,7 +226,11 @@ class ConversionController extends Controller {
                 if($codec == "copy"){
                         $middleArgs = "-codec copy";
                 }
-                $cmd = " ffmpeg -y -i ".escapeshellarg($file)." ".$middleArgs." ".escapeshellarg(dirname($file) . '/' . pathinfo($file)['filename'].".".$output);
+                if($codec == "qsv"){
+                        $cmd = " ffmpeg -y -init_hw_device qsv -c:v hevc_qsv -i ".escapeshellarg($file)." -c:a copy -c:v h264_qsv -profile:v high -global_quality 24 -level 41 -sn -filter_complex 'vpp_qsv=w=1920:h=1080:format=nv12' ".escapeshellarg(dirname($file) . '/' . pathinfo($file)['filename'].".".$output);
+                } else {
+                        $cmd = " ffmpeg -y -i ".escapeshellarg($file)." ".$middleArgs." ".escapeshellarg(dirname($file) . '/' . pathinfo($file)['filename'].".".$output);
+                }
                 if ($priority != "0"){
                         $cmd = "nice -n ".escapeshellarg($priority).$cmd;
                 }
