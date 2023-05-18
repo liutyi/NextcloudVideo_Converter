@@ -15,18 +15,11 @@ Place this app in **nextcloud/apps/**
 * WEBM
 * M4V
 
-h.264/h.265/QSV 
+(h.264/h.265/QSV/..)
 
 ## Requirements
 
 * FFmpeg
-
-## TODO
-
-* Convert multiple files at once
-* Schedule conversion
-* Choose codec
-* Support encrypted files
 
 ## PREVIEW 
 
