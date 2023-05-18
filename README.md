@@ -6,7 +6,7 @@ Place this app in **nextcloud/apps/**
 * Video Conversion
 * Override or not
 * Preset option
-* More incoming...
+* development stopped, only some dirtyworkoarounds applyied 
 
 ## Output supported
 
@@ -14,7 +14,8 @@ Place this app in **nextcloud/apps/**
 * AVI
 * WEBM
 * M4V
-* More incoming...
+
+h.264/h.265/QSV 
 
 ## Requirements
 
@@ -29,4 +30,4 @@ Place this app in **nextcloud/apps/**
 
 ## PREVIEW 
 
-![alt text](https://raw.githubusercontent.com/PaulLereverend/NextcloudVideo_Converter/master/img/appstore.gif)
+![alt text](https://raw.githubusercontent.com/liutyi/NextcloudVideo_Converter/master/img/2023-05-18_030159.png)
